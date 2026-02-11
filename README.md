@@ -41,7 +41,7 @@ cd cioran
 2. **Build and start the containers:**
 
 ```bash
-docker-compose up --build
+docker compose up --build
 ```
 
 ### Local Development Environment
@@ -91,3 +91,28 @@ cd ..
 Once the containers are running, the application is accessible via the Nginx reverse proxy. You do not need to specify individual service ports:
 
 * **Web Interface:** `http://localhost`
+
+## Production Environment
+
+In production, Cioran utilizes a multi-file Docker Compose strategy to enforce HTTPS and handle automated SSL certificate renewals via Let's Encrypt. The system is designed to be self-healing and requires no host-level configuration (like Crontab). Renewal logic is entirely containerized, Certbot Service attempts a renewal every 12 hours, Nginx Service automatically performs a graceful reload every 6 hours to check for updated certificate files on the shared volume.
+
+### 1. SSL Initialization
+
+For new server deployments, use the provided orchestration script to prove domain ownership and generate initial certificates. This script handles the "chicken-and-egg" problem of starting Nginx before certificates physically exist.
+
+```bash
+chmod +x nginx/init-https.sh
+./nginx/init-https.sh
+```
+
+### 2. Deployment
+
+To deploy or update the production stack, always include both the base and production override files. This ensures Nginx uses the hardened `prod.conf` and starts the Certbot renewal service.
+
+```bash
+# Start the production stack
+docker compose -f docker-compose.yml -f docker-compose.prod.yml up -d --build
+
+# Monitor production logs
+docker compose -f docker-compose.yml -f docker-compose.prod.yml logs -f
+```

@@ -14,8 +14,10 @@ backend/backend
 
 .DS_Store
 Thumbs.db
-
-ls.txt
-
 *.log
 .vscode/
+
+certbot/conf/live/
+certbot/conf/archive/
+certbot/conf/accounts/
+certbot/logs/
