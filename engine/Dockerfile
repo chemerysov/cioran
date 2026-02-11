@@ -1,7 +1,8 @@
 FROM python:3.11-slim
 RUN useradd -m cioran
-WORKDIR /app
-RUN pip install flask gunicorn
+WORKDIR /app/
+COPY requirements.txt .
+RUN pip install --no-cache-dir -r requirements.txt
 COPY . .
 RUN chown -R cioran:cioran /app
 USER cioran

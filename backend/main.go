@@ -5,6 +5,8 @@ import (
 	"io"
 	"net/http"
 	"time"
+
+	"github.com/google/uuid"
 )
 
 func main() {
@@ -21,7 +23,8 @@ func main() {
 	}
 
 	fmt.Println("Go Backend starting on :8080...")
-	if err := server.ListenAndServe(); err != nil {
+	var err error = server.ListenAndServe()
+	if err != nil {
 		fmt.Printf("Server error: %v\n", err)
 	}
 }
@@ -30,14 +33,20 @@ type handler struct{}
 
 // implements http.Handler interface
 func (h handler) ServeHTTP(rw http.ResponseWriter, r *http.Request) {
-	resp, err := http.Get("http://engine:5000/run")
+	var requestID string = uuid.New().String()
+	fmt.Printf("[%s] Received request for /api/\n", requestID)
+
+	var resp *http.Response
+	var err error
+	resp, err = http.Get("http://engine:5000/run")
 	if err != nil {
 		http.Error(rw, "Engine communication failed: "+err.Error(), http.StatusInternalServerError)
 		return
 	}
 	defer resp.Body.Close()
 
-	body, err := io.ReadAll(resp.Body)
+	var body []byte
+	body, err = io.ReadAll(resp.Body)
 	if err != nil {
 		http.Error(rw, "Failed to read engine response", http.StatusInternalServerError)
 		return

@@ -1,17 +1,17 @@
 FROM node:20-alpine AS deps
-WORKDIR /app
+WORKDIR /app/
 COPY package.json package-lock.json* ./
 RUN npm ci
 
 FROM node:20-alpine AS builder
-WORKDIR /app
+WORKDIR /app/
 COPY --from=deps /app/node_modules ./node_modules
 COPY . .
 ENV NEXT_TELEMETRY_DISABLED 1
 RUN npm run build
 
 FROM node:20-alpine AS runner
-WORKDIR /app
+WORKDIR /app/
 ENV NODE_ENV production
 ENV NEXT_TELEMETRY_DISABLED 1
 RUN addgroup --system --gid 1001 nodejs
