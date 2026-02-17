@@ -2,7 +2,38 @@
 
 This document serves as the formal record of third-party software components integrated into or redistributed with the **Cioran** project. Each component is governed by its respective license, the terms of which are summarized or referenced below.
 
-## 1. Frontend Frameworks and Languages
+### Go
+
+* **License:** BSD 3-Clause License
+* **Copyright:** © 2009 The Go Authors. All rights reserved.
+
+### Google UUID (Go)
+
+* **License:** BSD 3-Clause License
+* **Copyright:** © 2009, 2014 Google Inc. All rights reserved.
+
+### Python
+
+* **License:** Python Software Foundation (PSF) License
+* **Copyright:** © 2001-2024 Python Software Foundation. All rights reserved.
+
+### Flask (Python)
+
+* **License:** BSD 3-Clause "New" or "Revised" License
+* **Copyright:** © 2010 Pallets
+* **Notice:** Redistribution and use in source and binary forms, with or without modification, are permitted provided that the specified conditions of the BSD 3-Clause license are met, including the retention of the copyright notice and the list of conditions.
+
+### Gunicorn (Python)
+
+* **License:** MIT
+* **Copyright:** © 2009-2023 Benoit Chesneau
+* **Notice:** Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files.
+
+### TypeScript
+
+* **License:** Apache License 2.0
+* **Copyright:** © Microsoft Corporation. All rights reserved.
+* **Notice:** Licensed under the Apache License, Version 2.0; you may not use this file except in compliance with the License.
 
 ### Next.js
 
@@ -16,50 +47,11 @@ This document serves as the formal record of third-party software components int
 * **Copyright:** © Meta Platforms, Inc. and affiliates.
 * **Notice:** The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 
-### TypeScript
-
-* **License:** Apache License 2.0
-* **Copyright:** © Microsoft Corporation. All rights reserved.
-* **Notice:** Licensed under the Apache License, Version 2.0; you may not use this file except in compliance with the License.
-
-## 2. Backend Libraries and Frameworks
-
-### Flask
-
-* **License:** BSD 3-Clause "New" or "Revised" License
-* **Copyright:** © 2010 Pallets
-* **Notice:** Redistribution and use in source and binary forms, with or without modification, are permitted provided that the specified conditions of the BSD 3-Clause license are met, including the retention of the copyright notice and the list of conditions.
-
-### Gunicorn
-
-* **License:** MIT
-* **Copyright:** © 2009-2023 Benoit Chesneau
-* **Notice:** Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files.
-
-### Google UUID (Go)
-
-* **License:** BSD 3-Clause License
-* **Copyright:** © 2009, 2014 Google Inc. All rights reserved.
-
-## 3. Runtimes and Environment
-
 ### Node.js
 
 * **License:** MIT-style (containing various components)
 * **Copyright:** © Node.js contributors. All rights reserved.
 * **Notice:** Node.js is licensed for use as defined in the LICENSE file provided in the Node.js distribution.
-
-### Python
-
-* **License:** Python Software Foundation (PSF) License
-* **Copyright:** © 2001-2024 Python Software Foundation. All rights reserved.
-
-### Go (Golang)
-
-* **License:** BSD 3-Clause License
-* **Copyright:** © 2009 The Go Authors. All rights reserved.
-
-## 4. Infrastructure and Containerization
 
 ### Docker & Docker Compose
 
