@@ -13,7 +13,6 @@ func main() {
 	var handler http.Handler = handler{}
 	var mux *http.ServeMux = http.NewServeMux()
 	mux.Handle("/api/", handler)
-
 	server := &http.Server{
 		Addr:         ":8080",
 		Handler:      mux,
@@ -21,7 +20,6 @@ func main() {
 		WriteTimeout: 15 * time.Second,
 		IdleTimeout:  120 * time.Second,
 	}
-
 	fmt.Println("Go Backend starting on :8080...")
 	var err error = server.ListenAndServe()
 	if err != nil {
@@ -35,7 +33,6 @@ type handler struct{}
 func (h handler) ServeHTTP(rw http.ResponseWriter, r *http.Request) {
 	var requestID string = uuid.New().String()
 	fmt.Printf("[%s] Received request for /api/\n", requestID)
-
 	var resp *http.Response
 	var err error
 	resp, err = http.Get("http://engine:5000/run")
@@ -44,14 +41,12 @@ func (h handler) ServeHTTP(rw http.ResponseWriter, r *http.Request) {
 		return
 	}
 	defer resp.Body.Close()
-
 	var body []byte
 	body, err = io.ReadAll(resp.Body)
 	if err != nil {
 		http.Error(rw, "Failed to read engine response", http.StatusInternalServerError)
 		return
 	}
-
 	rw.Header().Set("Content-Type", "application/json")
 	rw.Header().Set("Access-Control-Allow-Origin", "*")
 	rw.Write(body)

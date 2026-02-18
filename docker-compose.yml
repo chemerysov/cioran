@@ -4,13 +4,11 @@ services:
         restart: always
         expose:
             - "8080"
-
     engine:
         build: ./engine
         restart: always
         expose:
             - "5000"
-
     frontend:
         build: ./frontend
         restart: always
@@ -19,7 +17,6 @@ services:
         environment:
             - HOSTNAME=0.0.0.0
             - PORT=3000
-
     nginx:
         image: nginx:alpine
         ports:
